@@ -71,7 +71,6 @@ The resulting commit message will be:
 
 CommitWizard allows you to define your own commit categories by creating a `.commitwizardrc` file in the root of your project. The file should be in JSON format, like so:
 
-```json
 {
   "categories": [
     { "label": "chore", "description": "Changes to the build process or auxiliary tools" },
