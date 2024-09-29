@@ -1,21 +1,23 @@
 {
   "name": "commitwizard-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "bin": {
-    "commitwizard": "./commitwizard.js"
+    "commitwizard": "commitwizard.js"
   },
   "type": "module",
-  "keywords": ["commit",
-  "git",
-  "cli",
-  "commit-message",
-  "interactive",
-  "commitwizard",
-  "developer-tools",
-  "version-control",
-  "automation",
-  "best-practices"],
+  "keywords": [
+    "commit",
+    "git",
+    "cli",
+    "commit-message",
+    "interactive",
+    "commitwizard",
+    "developer-tools",
+    "version-control",
+    "automation",
+    "best-practices"
+  ],
   "author": "Sarah Rhone Lachner",
   "license": "ISC",
   "description": "A CLI tool that helps developers select a commit message category interactively before writing a Git commit message, ensuring consistent and structured commit history.",
