@@ -2,9 +2,9 @@
 
 **CommitWizard CLI** is a command-line tool that helps developers write consistent and structured Git commit messages by interactively selecting a commit category before writing the message. This ensures best practices are followed and makes it easier to maintain a clear commit history.
 
-<img src="./assets/commitwizard_prompt.png" alt="CommitWizard Prompt" width="400"/>
+<img src="./assets/commitwizard-prompt.png" alt="CommitWizard Prompt" width="400"/>
 
-<img src="./assets/commitwizard_category_selection.png" alt="CommitWizard Category Selection" width="400"/>
+<img src="./assets/commitwizard-category-selection.png" alt="CommitWizard Category Selection" width="400"/>
 
 ## Features
 
