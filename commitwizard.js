@@ -1,26 +1,47 @@
 #!/usr/bin/env node
 
 import inquirer from 'inquirer';
+import fs from 'fs-extra';
 import { execSync } from 'child_process';
+import path from 'path';
 
-const commitCategories = [
-  { name: '[chore]: Changes to the build process or auxiliary tools', value: 'chore' },
-  { name: '[ci]: Continuous Integration and deployment', value: 'ci' },
-  { name: '[docs]: Documentation only changes', value: 'docs' },
-  { name: '[feat]: A new feature', value: 'feat' },
-  { name: '[fix]: A bug fix', value: 'fix' },
-  { name: '[perf]: Performance updates and optimization', value: 'perf' },
-  { name: '[refactor]: A code change that neither fixes a bug nor adds a feature', value: 'refactor' },
-  { name: '[remove]: Removing files or unnecessary code', value: 'remove' },
-  { name: '[revert]: Undo changes that have been committed to the repository', value: 'revert' },
-  { name: '[style]: Changes that do not affect the meaning of the code', value: 'style' },
-  { name: '[test]: Adding tests or correcting existing tests', value: 'test' },
-  { name: '[update]: Small updates that do not change functionality', value: 'update' },
-];
+const loadCommitCategories = () => {
+  const configPath = path.resolve(process.cwd(), '.commitwizardrc');
+  if (fs.existsSync(configPath)) {
+    try {
+      const config = fs.readJSONSync(configPath);
+      if (Array.isArray(config.categories) && config.categories.length > 0) {
+        return config.categories.map(category => ({
+          name: `[${category.label}]: ${category.description}`,
+          value: category.label
+        }));
+      }
+    } catch (error) {
+      console.error('Error reading .commitwizardrc file:', error.message);
+    }
+  }
+
+  // Default categories if configuration file is not found or has errors
+  return [
+    { name: '[chore]: Changes to the build process or auxiliary tools', value: 'chore' },
+    { name: '[ci]: Continuous Integration and deployment', value: 'ci' },
+    { name: '[docs]: Documentation only changes', value: 'docs' },
+    { name: '[feat]: A new feature', value: 'feat' },
+    { name: '[fix]: A bug fix', value: 'fix' },
+    { name: '[perf]: Performance updates and optimization', value: 'perf' },
+    { name: '[refactor]: A code change that neither fixes a bug nor adds a feature', value: 'refactor' },
+    { name: '[remove]: Removing files or unnecessary code', value: 'remove' },
+    { name: '[revert]: Undo changes that have been committed to the repository', value: 'revert' },
+    { name: '[style]: Changes that do not affect the meaning of the code', value: 'style' },
+    { name: '[test]: Adding tests or correcting existing tests', value: 'test' },
+    { name: '[update]: Small updates that do not change functionality', value: 'update' },
+  ];
+};
 
 async function runCommitWizard() {
   try {
-    // Prompt the user to select a commit category
+    const commitCategories = loadCommitCategories();
+
     const { category } = await inquirer.prompt([
       {
         type: 'list',
@@ -30,7 +51,6 @@ async function runCommitWizard() {
       },
     ]);
 
-    // Prompt the user to write a commit message
     const { message } = await inquirer.prompt([
       {
         type: 'input',
@@ -39,10 +59,8 @@ async function runCommitWizard() {
       },
     ]);
 
-    // Construct the full commit message
     const fullCommitMessage = `[${category}]: ${message}`;
 
-    // Run the git commit command with the constructed message
     execSync(`git commit -m "${fullCommitMessage}"`, { stdio: 'inherit' });
   } catch (error) {
     console.error('Error:', error.message);

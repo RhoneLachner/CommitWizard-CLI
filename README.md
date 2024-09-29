@@ -69,7 +69,16 @@ The resulting commit message will be:
 
 ## Customization
 
-You can modify the commit categories by editing the source code in `commitwizard.js` if needed, allowing you to adapt CommitWizard to your project's specific workflow.
+CommitWizard allows you to define your own commit categories by creating a `.commitwizardrc` file in the root of your project. The file should be in JSON format, like so:
+
+```json
+{
+  "categories": [
+    { "label": "chore", "description": "Changes to the build process or auxiliary tools" },
+    { "label": "feat", "description": "A new feature" }
+    // Add more categories as needed
+  ]
+}
 
 ## Contributing
 

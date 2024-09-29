@@ -1,0 +1,16 @@
+{
+  "categories": [
+    { "label": "chore", "description": "Changes to the build process or auxiliary tools" },
+    { "label": "ci", "description": "Continuous Integration and deployment" },
+    { "label": "docs", "description": "Documentation only changes" },
+    { "label": "feat", "description": "A new feature" },
+    { "label": "fix", "description": "A bug fix" },
+    { "label": "perf", "description": "Performance updates and optimization" },
+    { "label": "refactor", "description": "A code change that neither fixes a bug nor adds a feature" },
+    { "label": "remove", "description": "Removing files or unnecessary code" },
+    { "label": "revert", "description": "Undo changes that have been committed to the repository" },
+    { "label": "style", "description": "Changes that do not affect the meaning of the code" },
+    { "label": "test", "description": "Adding tests or correcting existing tests" },
+    { "label": "update", "description": "Small updates that do not change functionality" }
+  ]
+}
