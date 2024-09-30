@@ -11,9 +11,45 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const packageJson = fs.readJSONSync(path.join(__dirname, 'package.json'));
 
-// Handle command-line arguments for version
+// Function to initialize a default .commitwizardrc file
+const initCommitWizardConfig = () => {
+  const configPath = path.resolve(process.cwd(), '.commitwizardrc');
+  if (fs.existsSync(configPath)) {
+    console.log('.commitwizardrc already exists in this directory.');
+    return;
+  }
+
+  const defaultConfig = {
+    categories: [
+      { label: 'chore', description: 'Changes to the build process or auxiliary tools' },
+      { label: 'ci', description: 'Continuous Integration and deployment' },
+      { label: 'docs', description: 'Documentation only changes' },
+      { label: 'feat', description: 'A new feature' },
+      { label: 'fix', description: 'A bug fix' },
+      { label: 'perf', description: 'Performance updates and optimization' },
+      { label: 'refactor', description: 'A code change that neither fixes a bug nor adds a feature' },
+      { label: 'remove', description: 'Removing files or unnecessary code' },
+      { label: 'revert', description: 'Undo changes that have been committed to the repository' },
+      { label: 'style', description: 'Changes that do not affect the meaning of the code' },
+      { label: 'test', description: 'Adding tests or correcting existing tests' },
+      { label: 'update', description: 'Small updates that do not change functionality' },
+    ],
+  };
+
+  try {
+    fs.writeJSONSync(configPath, defaultConfig, { spaces: 2 });
+    console.log('.commitwizardrc file has been generated successfully.');
+  } catch (error) {
+    console.error('Error generating .commitwizardrc file:', error.message);
+  }
+};
+
+// Handle command-line arguments for version and config
 if (process.argv.includes('-v') || process.argv.includes('--version')) {
   console.log(`CommitWizard CLI version: ${packageJson.version}`);
+  process.exit(0);
+} else if (process.argv.includes('--config')) {
+  initCommitWizardConfig();
   process.exit(0);
 }
 
@@ -62,8 +98,9 @@ const loadCommitCategories = () => {
 };
 
 async function runCommitWizard() {
+  // Check if there are any changes to commit
   if (!checkForChanges()) {
-    console.log('No staged changes to commit. Please make some changes before running CommitWizard.');
+    console.log('No changes to commit. Please make some changes before running CommitWizard.');
     process.exit(0);
   }
 
@@ -87,8 +124,11 @@ async function runCommitWizard() {
       },
     ]);
 
-    const fullCommitMessage = `[${category}]: ${message}`;
+    // Escape double quotes in the message to allow special characters within the commit message
+    const escapedMessage = message.replace(/"/g, '\\"');
+    const fullCommitMessage = `[${category}]: ${escapedMessage}`;
 
+    // Use double quotes to wrap the full commit message
     execSync(`git commit -m "${fullCommitMessage}"`, { stdio: 'inherit' });
   } catch (error) {
     console.error('Error:', error.message);
