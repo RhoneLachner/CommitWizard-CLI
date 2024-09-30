@@ -1,5 +1,7 @@
 # CommitWizard CLI
 
+<img src="./assets/commitwizard-logo-vector.png" alt="CommitWizard Logo, wizard image with git and npm logos" width="20%"/>
+
 **CommitWizard CLI** is a command-line tool that helps developers write consistent and structured Git commit messages by interactively selecting a commit category before writing the message. This ensures best practices are followed and makes it easier to maintain a clear commit history.
 
 <img src="./assets/commitwizard-prompt.png" alt="CommitWizard Prompt" width="75%"/>
