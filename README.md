@@ -30,11 +30,13 @@ Follow the prompts to select a commit category and write your commit message. Co
 
 ## Commands
 
-| Command                          | Description                                                                                         |
-|----------------------------------|-----------------------------------------------------------------------------------------------------|
-| `commitwizard`                   | Runs the interactive prompt for writing a commit. It will guide you through selecting a commit category and writing a message. |
-| `commitwizard -v` or `--version` | Displays the current version of CommitWizard CLI.                                                   |
-| `commitwizard --config`          | Generates a default `.commitwizardrc` configuration file in the current directory. This file can be used to customize the available commit categories. | `commitwizard --log`          | Displays a list of the last 10 commits. | `commitwizard --undo`          | Undo the last commit but keep the changes staged. | `commitwizard --amend`          | Amend the previous commit, either by editing the message or adding new changes |
+| Command                  | Description                                                                                                      |
+|--------------------------|------------------------------------------------------------------------------------------------------------------|
+| `commitwizard --config`  | Generates a default `.commitwizardrc` configuration file in the current directory. This file can be used to customize the available commit categories. |
+| `commitwizard --log`     | Displays a list of the last 10 commits.                                                                          |
+| `commitwizard --undo`    | Undo the last commit but keep the changes staged.                                                                |
+| `commitwizard --amend`   | Amend the previous commit, either by editing the message or adding new changes.                                  |
+
 
 
 ## Default Commit Categories
