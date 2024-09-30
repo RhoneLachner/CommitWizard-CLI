@@ -4,6 +4,29 @@ import inquirer from 'inquirer';
 import fs from 'fs-extra';
 import { execSync } from 'child_process';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get version number from package.json
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const packageJson = fs.readJSONSync(path.join(__dirname, 'package.json'));
+
+// Handle command-line arguments for version
+if (process.argv.includes('-v') || process.argv.includes('--version')) {
+  console.log(`CommitWizard CLI version: ${packageJson.version}`);
+  process.exit(0);
+}
+
+// Check if there are changes to commit
+const checkForChanges = () => {
+  try {
+    const status = execSync('git status --porcelain').toString().trim();
+    return status.length > 0; // If there is output, it means there are changes
+  } catch (error) {
+    console.error('Error checking Git status:', error.message);
+    process.exit(1);
+  }
+};
 
 const loadCommitCategories = () => {
   const configPath = path.resolve(process.cwd(), '.commitwizardrc');
@@ -11,9 +34,9 @@ const loadCommitCategories = () => {
     try {
       const config = fs.readJSONSync(configPath);
       if (Array.isArray(config.categories) && config.categories.length > 0) {
-        return config.categories.map(category => ({
+        return config.categories.map((category) => ({
           name: `[${category.label}]: ${category.description}`,
-          value: category.label
+          value: category.label,
         }));
       }
     } catch (error) {
@@ -39,6 +62,11 @@ const loadCommitCategories = () => {
 };
 
 async function runCommitWizard() {
+  if (!checkForChanges()) {
+    console.log('No staged changes to commit. Please make some changes before running CommitWizard.');
+    process.exit(0);
+  }
+
   try {
     const commitCategories = loadCommitCategories();
 
