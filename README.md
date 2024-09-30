@@ -10,15 +10,29 @@
 
 ## Features
 
-* **Interactive commit prompts**: Select a commit category from a list of predefined options.
-* **Structured commit messages**: Automatically prepend the selected category to your commit message.
-* **Customizable categories**: Easily modify the categories to suit your workflow.
+- **Interactive commit prompts**: Select a commit category from a list of predefined options.
+- **Structured commit messages**: Automatically prepend the selected category to your commit message.
+- **Customizable categories**: Easily modify the categories to suit your workflow, including the use of special characters and emojis for more expressive commit messages.
+- **Emoji and special character support**: Write commit messages and categories that include emojis and special characters to add more context and visual clarity.
+- **Command-line tools for managing commits**:
+  - **View commit history**: Use `commitwizard --log` to view a list of recent commits.
+  - **Undo last commit**: Use `commitwizard --undo` to undo the last commit while keeping changes staged.
+  - **Amend previous commit**: Use `commitwizard --amend` to modify the previous commit, including editing the message or adding new changes.
+  - **Generate configuration**: Use `commitwizard --config` to create a default `.commitwizardrc` file for customizing commit categories.
+  - **View version**: Use `commitwizard -v` or `commitwizard --version` to display the current version of CommitWizard CLI.
+
 
 ## Installation
 
 To install CommitWizard globally:
 
 `npm install -g commitwizard-cli`
+
+## Updates
+
+To update CommitWizard globally:
+
+`npm update -g commitwizard-cli`
 
 ## Usage
 
