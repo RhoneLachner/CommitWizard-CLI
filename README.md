@@ -28,7 +28,16 @@ After staging your changes, simply run:
 
 Follow the prompts to select a commit category and write your commit message. CommitWizard will automatically format and create the Git commit for you.
 
-## Commit Categories
+## Commands
+
+| Command                          | Description                                                                                         |
+|----------------------------------|-----------------------------------------------------------------------------------------------------|
+| `commitwizard`                   | Runs the interactive prompt for writing a commit. It will guide you through selecting a commit category and writing a message. |
+| `commitwizard -v` or `--version` | Displays the current version of CommitWizard CLI.                                                   |
+| `commitwizard --config`          | Generates a default `.commitwizardrc` configuration file in the current directory. This file can be used to customize the available commit categories. | `commitwizard --log`          | Displays a list of the last 10 commits. | `commitwizard --undo`          | Undo the last commit but keep the changes staged. | `commitwizard --amend`          | Amend the previous commit, either by editing the message or adding new changes |
+
+
+## Default Commit Categories
 
 CommitWizard provides the following categories for your commit messages:
 
@@ -71,7 +80,9 @@ The resulting commit message will be:
 
 ## Customization
 
-CommitWizard allows you to define your own commit categories by creating a `.commitwizardrc` file in the root of your project. The file should be in JSON format, like so:
+CommitWizard allows you to define your own commit categories by creating a `.commitwizardrc` file in the root of your project. 
+Running the `commitwizard --config` command will generate the `.commitwizardrc` file for you, including default categories that can be changed.
+The file should be written in JSON format, like so:
 
 {
   "categories": [
