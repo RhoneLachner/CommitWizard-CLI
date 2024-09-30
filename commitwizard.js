@@ -44,14 +44,54 @@ const initCommitWizardConfig = () => {
   }
 };
 
-// Handle command-line arguments for version and config
+// Handle command-line arguments for version, config, log, undo, and amend
 if (process.argv.includes('-v') || process.argv.includes('--version')) {
   console.log(`CommitWizard CLI version: ${packageJson.version}`);
   process.exit(0);
 } else if (process.argv.includes('--config')) {
   initCommitWizardConfig();
   process.exit(0);
+} else if (process.argv.includes('--log')) {
+  showCommitHistory();
+  process.exit(0);
+} else if (process.argv.includes('--undo')) {
+  undoLastCommit();
+  process.exit(0);
+} else if (process.argv.includes('--amend')) {
+  amendLastCommit();
+  process.exit(0);
 }
+
+// Function to show commit history
+const showCommitHistory = () => {
+  try {
+    const log = execSync('git log --oneline -n 10').toString();
+    console.log('Recent commits:');
+    console.log(log);
+  } catch (error) {
+    console.error('Error fetching commit history:', error.message);
+  }
+};
+
+// Function to undo the last commit (soft reset)
+const undoLastCommit = () => {
+  try {
+    execSync('git reset --soft HEAD~1', { stdio: 'inherit' });
+    console.log('Last commit has been undone, and changes are still staged.');
+  } catch (error) {
+    console.error('Error undoing the last commit:', error.message);
+  }
+};
+
+// Function to amend the last commit
+const amendLastCommit = () => {
+  try {
+    execSync('git commit --amend', { stdio: 'inherit' });
+    console.log('Last commit has been amended.');
+  } catch (error) {
+    console.error('Error amending the last commit:', error.message);
+  }
+};
 
 // Check if there are changes to commit
 const checkForChanges = () => {
