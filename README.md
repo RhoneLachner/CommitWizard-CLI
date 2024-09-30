@@ -34,6 +34,8 @@ To update CommitWizard globally:
 
 `npm update -g commitwizard-cli`
 
+**Current version:** 1.0.5
+
 ## Usage
 
 After staging your changes, simply run:
