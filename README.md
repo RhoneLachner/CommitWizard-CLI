@@ -86,7 +86,7 @@ Run CommitWizard:
 
 Select a category and write your commit message:
 
-? Select the type of change that you're committing:
+Select the type of change that you're committing:
 
 * [feat]: A new feature
 * [fix]: A bug fix
