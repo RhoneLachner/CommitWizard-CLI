@@ -1,12 +1,12 @@
 # CommitWizard CLI
 
-<img src="./assets/commitwizard-logo-vector.png" alt="CommitWizard Logo, wizard image with git and npm logos" width="24%"/>
+<img src="https://raw.githubusercontent.com/RhoneLachner/CommitWizard-CLI/main/assets/commitwizard-logo-vector.png" alt="CommitWizard Logo, wizard image with git and npm logos" width="24%"/>
 
 **CommitWizard CLI** is a command-line tool that helps developers write consistent and structured Git commit messages by interactively selecting a commit category before writing the message. This ensures best practices are followed and makes it easier to maintain a clear commit history.
 
-<img src="./assets/commitwizard-prompt.png" alt="CommitWizard Prompt" width="75%"/>
+<img src="https://github.com/RhoneLachner/CommitWizard-CLI/raw/main/assets/commitwizard-prompt.png" alt="CommitWizard Prompt" width="75%"/>
 
-<img src="./assets/commitwizard-category-selection.png" alt="CommitWizard Category Selection" width="55%"/>
+<img src="https://github.com/RhoneLachner/CommitWizard-CLI/raw/main/assets/commitwizard-category-selection.png" alt="CommitWizard Category Selection" width="55%"/>
 
 ## Features
 
@@ -34,7 +34,7 @@ To update CommitWizard globally:
 
 `npm update -g commitwizard-cli`
 
-**Current version:** 1.0.5
+**Current version:** 1.0.6
 
 ## Usage
 
