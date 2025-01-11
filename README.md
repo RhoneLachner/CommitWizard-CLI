@@ -34,7 +34,7 @@ To update CommitWizard globally:
 
 `npm update -g commitwizard-cli`
 
-**Current version:** 2.0.0
+**Current version:** 2.0.1
 
 ## Usage
 
