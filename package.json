@@ -1,6 +1,6 @@
 {
   "name": "commitwizard-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "index.js",
   "bin": {
     "commitwizard": "commitwizard.js"
@@ -24,5 +24,10 @@
   "dependencies": {
     "fs-extra": "^11.2.0",
     "inquirer": "^11.1.0"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RhoneLachner/CommitWizard-CLI.git"
   }
 }
