@@ -23,7 +23,7 @@
   "description": "A CLI tool that helps developers select a commit message category interactively before writing a Git commit message, ensuring consistent and structured commit history.",
   "dependencies": {
     "fs-extra": "^11.2.0",
-    "inquirer": "^11.1.0"
+    "inquirer": "^12.3.0"
   },
   "scripts": {},
   "repository": {
