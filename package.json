@@ -1,6 +1,6 @@
 {
   "name": "commitwizard-cli",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "main": "index.js",
   "bin": {
     "commitwizard": "commitwizard.js"
@@ -22,9 +22,8 @@
   "license": "ISC",
   "description": "A CLI tool that helps developers select a commit message category interactively before writing a Git commit message, ensuring consistent and structured commit history.",
   "dependencies": {
-    "external-editor": "^3.1.0",
-    "fs-extra": "^11.2.0",
-    "inquirer": "^12.3.0"
+    "enquirer": "^2.4.1",
+    "fs-extra": "^11.2.0"
   },
   "scripts": {},
   "repository": {
