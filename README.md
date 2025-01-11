@@ -107,7 +107,7 @@ The file should be written in JSON format, like so:
     { "label": "chore", "description": "Changes to the build process or auxiliary tools" },
     { "label": "ci", "description": "Continuous Integration and deployment" },
     // Add more categories as needed
-]
+  ]
 }
 ```
 
