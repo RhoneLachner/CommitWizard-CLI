@@ -8,7 +8,7 @@
 
 <img src="https://github.com/RhoneLachner/CommitWizard-CLI/raw/main/assets/commitwizard-category-selection.png" alt="CommitWizard Category Selection" width="55%"/>
 
-<img src="https://github.com/RhoneLachner/CommitWizard-CLI/raw/main/assets/commitwizard-description.png" alt="CommitWizard Message & Optional Description" width="60%"/>
+<img src="https://github.com/RhoneLachner/CommitWizard-CLI/raw/main/assets/commitwizard-description.png" alt="CommitWizard Message & Optional Description" width="44%"/>
 
 ## Features
 
@@ -35,7 +35,7 @@ To update CommitWizard globally:
 
 `npm update -g commitwizard-cli`
 
-**Current version:** 2.0.2
+**Current version:** 2.0.3
 
 ## Usage
 
