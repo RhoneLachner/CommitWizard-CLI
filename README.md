@@ -8,6 +8,8 @@
 
 <img src="https://github.com/RhoneLachner/CommitWizard-CLI/raw/main/assets/commitwizard-category-selection.png" alt="CommitWizard Category Selection" width="55%"/>
 
+<img src="https://github.com/RhoneLachner/CommitWizard-CLI/raw/main/assets/commitwizard-description.png" alt="CommitWizard Message & Optional Description" width="60%"/>
+
 ## Features
 
 - **Interactive commit prompts**: Select a commit category from a list of predefined options.
@@ -21,7 +23,6 @@
   - **Generate configuration**: Use `commitwizard --config` to create a default `.commitwizardrc` file for customizing commit categories.
   - **View version**: Use `commitwizard -v` or `commitwizard --version` to display the current version of CommitWizard CLI.
 
-
 ## Installation
 
 To install CommitWizard globally:
@@ -34,7 +35,7 @@ To update CommitWizard globally:
 
 `npm update -g commitwizard-cli`
 
-**Current version:** 2.0.1
+**Current version:** 2.0.2
 
 ## Usage
 
@@ -46,35 +47,32 @@ Follow the prompts to select a commit category and write your commit message. Co
 
 ## Commands
 
-| Command                          | Description                                                                                                      |
-|----------------------------------|------------------------------------------------------------------------------------------------------------------|
-| `commitwizard -v` or `--version` | Displays the current version of CommitWizard CLI.                                                               |
+| Command                          | Description                                                                                                                                            |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `commitwizard -v` or `--version` | Displays the current version of CommitWizard CLI.                                                                                                      |
 | `commitwizard --config`          | Generates a default `.commitwizardrc` configuration file in the current directory. This file can be used to customize the available commit categories. |
-| `commitwizard --log`             | Displays a list of the last 10 commits.                                                                          |
-| `commitwizard --undo`            | Undo the last commit but keep the changes staged.                                                                |
-| `commitwizard --amend`           | Amend the previous commit, either by editing the message or adding new changes.                                  |
-
-
-
+| `commitwizard --log`             | Displays a list of the last 10 commits.                                                                                                                |
+| `commitwizard --undo`            | Undo the last commit but keep the changes staged.                                                                                                      |
+| `commitwizard --amend`           | Amend the previous commit, either by editing the message or adding new changes.                                                                        |
 
 ## Default Commit Categories
 
 CommitWizard provides the following categories for your commit messages:
 
-* **chore**: Changes to the build process or auxiliary tools
-* **ci**: Continuous Integration and deployment
-* **docs**: Documentation only changes
-* **feat**: A new feature
-* **fix**: A bug fix
-* **perf**: Performance updates and optimization
-* **refactor**: A code change that neither fixes a bug nor adds a feature
-* **remove**: Removing files or unnecessary code
-* **revert**: Undo changes that have been committed to the repository
-* **style**: Changes that do not affect the meaning of the code
-* **test**: Adding tests or correcting existing tests
-* **update**: Small updates that do not change functionality
+- **chore**: Changes to the build process or auxiliary tools
+- **ci**: Continuous Integration and deployment
+- **docs**: Documentation only changes
+- **feat**: A new feature
+- **fix**: A bug fix
+- **perf**: Performance updates and optimization
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **remove**: Removing files or unnecessary code
+- **revert**: Undo changes that have been committed to the repository
+- **style**: Changes that do not affect the meaning of the code
+- **test**: Adding tests or correcting existing tests
+- **update**: Small updates that do not change functionality
 
-## Example
+## Commit Category & Message Example
 
 Stage your changes:
 
@@ -88,9 +86,9 @@ Select a category and write your commit message:
 
 Select the type of change that you're committing:
 
-* [feat]: A new feature
-* [fix]: A bug fix
-* [docs]: Documentation only changes
+- [feat]: A new feature
+- [fix]: A bug fix
+- [docs]: Documentation only changes
 
 Write your commit message: `Add feature to handle user login`
 
@@ -100,17 +98,61 @@ The resulting commit message will be:
 
 ## Customization
 
-CommitWizard allows you to define your own commit categories by creating a `.commitwizardrc` file in the root of your project. 
+CommitWizard allows you to define your own commit categories by creating a `.commitwizardrc` file in the root of your project.
 Running the `commitwizard --config` command will generate the `.commitwizardrc` file for you, including default categories that can be changed.
 The file should be written in JSON format, like so:
-
+```
 {
   "categories": [
     { "label": "chore", "description": "Changes to the build process or auxiliary tools" },
-    { "label": "feat", "description": "A new feature" }
+    { "label": "ci", "description": "Continuous Integration and deployment" },
     // Add more categories as needed
-  ]
+]
 }
+```
+
+## Adding Commit Descriptions
+
+With the release of version 2.0.0, CommitWizard now supports optional multi-line commit descriptions!
+
+- Leave the input blank and press Enter to skip or finish the description option.
+- Add descriptions or bullet points one line at a time, pressing Enter after each line.
+- Paste multiple lines of text directly into the terminal and press Enter.
+
+### Description Example
+
+```
+Write your commit message: Example commit message
+
+✔ Write your commit message: Commit message example ✨
+✔ Write a commit description (optional): 
+  - To skip, leave blank & press Enter. Or, 
+  - Write a description & press Enter for more lines. Or, 
+  - Paste multiple lines at once & press Enter to finish. 
+     › commit description line 1 
+     <Enter>
+✔ Write a commit description (optional): 
+  - To skip, leave blank & press Enter. Or, 
+  - Write a description & press Enter for more lines. Or, 
+  - Paste multiple lines at once & press Enter to finish. 
+     › commit description line 2 
+     <Enter>
+? Write a commit description (optional): 
+  - To skip, leave blank & press Enter. Or, 
+  - Write a description & press Enter for more lines. Or, 
+  - Paste multiple lines at once & press Enter to finish. 
+     › 
+     <Enter>
+```
+
+The resulting commit message will be:
+
+```
+[category]: Commit message example ✨
+
+commit description line 1
+commit description line 2
+```
 
 ## Contributing
 

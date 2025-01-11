@@ -178,7 +178,6 @@ const loadCommitCategories = () => {
     },
   ];
 };
-
 async function runCommitWizard() {
   // Check if there are any changes to commit
   if (!checkForChanges()) {
@@ -206,12 +205,36 @@ async function runCommitWizard() {
       message: "Write your commit message:",
     });
 
+    // Repeated prompts for multi-line description
+    let description = "";
+    let addMore = true;
+
+    while (addMore) {
+      const descriptionResponse = await prompt({
+        type: "input",
+        name: "line",
+        message:
+          "Write a commit description (optional): \n- To skip, leave blank & press Enter. Or, \n- Write a description & press Enter for more lines. Or, \n- Paste multiple lines at once & press Enter to finish. \n    ",
+      });
+
+      if (descriptionResponse.line) {
+        description += `${descriptionResponse.line}\n`;
+      } else {
+        addMore = false; // End the loop if no input is provided
+      }
+    }
+
     const category = categoryResponse.category;
     const message = messageResponse.message;
 
-    // Escape double quotes in the message to allow special characters within the commit message
+    // Escape double quotes in the message and description
     const escapedMessage = message.replace(/"/g, '\\"');
-    const fullCommitMessage = `[${category}]: ${escapedMessage}`;
+    const escapedDescription = description.trim().replace(/"/g, '\\"');
+
+    // Combine short message and description
+    const fullCommitMessage = escapedDescription
+      ? `[${category}]: ${escapedMessage}\n\n${escapedDescription}`
+      : `[${category}]: ${escapedMessage}`;
 
     // Use double quotes to wrap the full commit message
     execSync(`git commit -m "${fullCommitMessage}"`, { stdio: "inherit" });
